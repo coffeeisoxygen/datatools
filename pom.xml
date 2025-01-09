@@ -39,6 +39,7 @@
     <maven-assembly-plugin.version>3.6.0</maven-assembly-plugin.version>
     <jacoco.version>0.8.11</jacoco.version>
     <spotbugs.version>4.8.3</spotbugs.version>
+    <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
   </properties>
 
   <!-- Dependency Management -->
@@ -120,6 +121,26 @@
           <mainClass>com.itsme.App</mainClass>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <?m2e execute onConfiguration,onIncremental?>
+            <id>create-logs-dir</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <mkdir dir="${project.build.directory}/logs"/>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
 
     <!-- Plugin Management -->
@@ -224,6 +245,11 @@
               </goals>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>${maven-antrun-plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
