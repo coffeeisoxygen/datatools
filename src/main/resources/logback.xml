@@ -25,19 +25,11 @@
             <totalSizeCap>1GB</totalSizeCap>
         </rollingPolicy>
     </appender>
-    <!-- Async Appender -->
-    <appender name="Async" class="ch.qos.logback.classic.AsyncAppender">
-        <appender-ref ref="RollingFile"/>
-        <queueSize>512</queueSize>
-        <discardingThreshold>0</discardingThreshold>
-    </appender>
     <!-- Logger Configurations -->
     <logger name="com.itsme" level="DEBUG"/>
-    <logger name="org.springframework" level="INFO"/>
-    <logger name="org.hibernate" level="INFO"/>
     <!-- Root Logger -->
     <root level="INFO">
         <appender-ref ref="Console"/>
-        <appender-ref ref="Async"/>
+        <appender-ref ref="RollingFile"/>
     </root>
 </configuration>
