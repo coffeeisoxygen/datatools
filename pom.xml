@@ -31,7 +31,7 @@
     <!-- Quality Tools -->
     <jacoco.version>0.8.11</jacoco.version>
     <spotbugs.version>4.7.3</spotbugs.version>
-    <spotbugs-maven-plugin.version>4.7.3.6</spotbugs-maven-plugin.version>
+    <spotbugs-maven-plugin.version>4.8.2.0</spotbugs-maven-plugin.version>
 
     <!-- Dependencies -->
     <logback.version>1.4.14</logback.version>
@@ -176,6 +176,7 @@
         <version>${jacoco.version}</version>
         <executions>
           <execution>
+            <id>prepare-agent</id>
             <goals>
               <goal>prepare-agent</goal>
             </goals>
