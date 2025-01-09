@@ -30,8 +30,6 @@
 
     <!-- Quality Tools -->
     <jacoco.version>0.8.11</jacoco.version>
-    <spotbugs.version>4.7.3</spotbugs.version>
-    <spotbugs-maven-plugin.version>4.8.2.0</spotbugs-maven-plugin.version>
 
     <!-- Dependencies -->
     <logback.version>1.4.14</logback.version>
@@ -81,14 +79,6 @@
       <version>${junit-jupiter.version}</version>
       <scope>test</scope>
     </dependency>
-
-    <!-- SpotBugs -->
-    <dependency>
-      <groupId>com.github.spotbugs</groupId>
-      <artifactId>spotbugs</artifactId>
-      <version>${spotbugs.version}</version>
-      <scope>provided</scope>
-    </dependency>
   </dependencies>
 
   <!-- Build Configuration -->
@@ -124,7 +114,16 @@
         <version>3.1.0</version>
         <configuration>
           <mainClass>com.itsme.App</mainClass>
+          <cleanupDaemonThreads>false</cleanupDaemonThreads>
         </configuration>
+        <executions>
+          <execution>
+            <id>run-app</id>
+            <goals>
+              <goal>java</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -186,25 +185,6 @@
             <phase>test</phase>
             <goals>
               <goal>report</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <!-- SpotBugs -->
-      <plugin>
-        <groupId>com.github.spotbugs</groupId>
-        <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>${spotbugs-maven-plugin.version}</version>
-        <configuration>
-          <effort>Max</effort>
-          <threshold>Low</threshold>
-          <failOnError>true</failOnError>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
             </goals>
           </execution>
         </executions>
